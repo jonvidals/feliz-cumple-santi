@@ -316,6 +316,12 @@
     .char-goku   { --color: var(--orange); --glow: rgba(255,109,0,0.3);  --bg-grad: radial-gradient(circle, #ff9100, #e65100); --delay: 0.4s; }
     .char-spider { --color: var(--red);    --glow: rgba(255,23,68,0.3);   --bg-grad: radial-gradient(circle, #d50000, #ff1744); --delay: 0.8s; }
     .char-woody  { --color: var(--green);  --glow: rgba(0,230,118,0.3);   --bg-grad: radial-gradient(circle, #00c853, #1b5e20); --delay: 1.2s; }
+    .char-mario  { --color: #e52521;       --glow: rgba(229,37,33,0.35);  --bg-grad: radial-gradient(circle, #e52521, #7f0000); --delay: 1.6s; }
+
+    /* Centrar la última tarjeta si es impar en la cuadrícula de 2 columnas */
+    .char-card:last-child:nth-child(odd) {
+      grid-column: span 2;
+    }
 
 
 
@@ -401,6 +407,13 @@
           <img src="toystory.png" class="char-img" alt="Woody & Buzz" />
         </div>
         <span class="char-name">Woody & Buzz</span>
+      </div>
+      <!-- Mario -->
+      <div class="char-card char-mario" onclick="charClick(this)">
+        <div class="char-badge-wrap">
+          <img src="mario.png" class="char-img" alt="Mario" />
+        </div>
+        <span class="char-name">Mario</span>
       </div>
     </div>
 
@@ -509,7 +522,8 @@
       sonic: new Audio('audio.mp3'),
       goku: new Audio('goku.mp3'),
       spider: new Audio('spiderman.mp3'),
-      woody: new Audio('woody.mp3')
+      woody: new Audio('woody.mp3'),
+      mario: new Audio('mario.mp3')
     };
 
     function charClick(card) {
@@ -530,6 +544,7 @@
       else if (card.classList.contains('char-goku')) charKey = 'goku';
       else if (card.classList.contains('char-spider')) charKey = 'spider';
       else if (card.classList.contains('char-woody')) charKey = 'woody';
+      else if (card.classList.contains('char-mario')) charKey = 'mario';
 
       if (charKey && charSounds[charKey]) {
         // Reset to beginning in case they spam-click
